@@ -1,0 +1,21 @@
+1. A
+2. A&B
+3. A&B
+4. C
+5. D
+6. a
+7. . %dw 2.0 
+output application/json 
+fun square(num1)= num1*num1 
+fun cube(num1)= num1*num1*num1  
+--- 
+// square(payload) 
+payload map (v,i) -> { 
+    `square of $v`:square(v), 
+    `cube of $v`:cube(v), 
+8. %dw 2.0 
+import * from dw::core::Strings 
+output application/json 
+--- 
+substringBefore(payload1,"T")= "2021-06-19" 
+ 
