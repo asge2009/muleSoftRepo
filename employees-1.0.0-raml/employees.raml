@@ -1,0 +1,42 @@
+#%RAML 1.0
+title: Employee
+description: RAML for employee 
+/employee:
+  get:
+    description: http get method for employee resource
+    responses:
+      200:
+        body:
+          application/json: 
+            example:  
+              {
+                "empId": 1,
+                "empFName": "Tom",
+                "empLName": "Lee",
+                "empAge":37,
+                "empAddress": "3400 Wheeler rd se",
+                "empSalary": 2000  
+              }   
+  post:
+    responses:
+      201:
+        body:
+          application/json:
+            example:
+              {"message": "employee info uploaded"}
+  /empployee{Id}:
+    put:
+      responses:
+        201:
+          body:
+            application/json:
+              example:
+                {"message": "update successful"}
+    delete:
+      responses:
+        201:
+          body:
+            application/json:
+              example:
+                {"message":"employee info removed"}            
+
