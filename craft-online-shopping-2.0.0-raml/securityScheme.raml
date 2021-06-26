@@ -1,0 +1,17 @@
+#%RAML 1.0 SecurityScheme
+type: OAuth 2.0 
+description: use token  
+describedBy:
+  headers:
+    authorization: 
+      description: user has to send valid token 
+      type: string
+  queryParameters:
+    access token:
+      description: send a valid token 
+      type: integer
+  responses:
+    401: 
+      description: unauthorized user 
+    403:
+      description: forbidden   

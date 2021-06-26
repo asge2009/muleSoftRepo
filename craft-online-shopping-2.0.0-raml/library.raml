@@ -1,0 +1,10 @@
+#%RAML 1.0 Library
+types:
+  dataType: !includedataTypes/product.raml
+traits:
+  collections: !include 404 and 500.raml 
+securitySchemes:
+  security: !include securityScheme.raml
+resourceTypes:
+  postResource: !include Resource Type/postResource.raml
+  # postResource.ramlsource Type/postResource.raml

@@ -1,0 +1,180 @@
+#%RAML 1.0 Extension
+extends: craft-online-shopping.raml
+description: for admins
+/products:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              !include Examples/products.raml
+  post:
+    responses:
+      201: 
+        body:
+          application/json:
+            example:
+              {
+                "message": "product uploaded"
+              }
+  delete: 
+    responses:
+      201: 
+        body:
+          application/json:
+            example:
+              {
+                "message": "product removed"
+              }  
+  /productid:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                !includeExamples/product.raml
+    put:
+     responses:
+       201:
+         body:
+           application/json:
+             example:
+               {"message": "update successful" }
+    delete:
+      responses:
+        201: 
+          body:
+            application/json:
+              example:
+                {
+                "message":"productid removed"
+              }
+
+/orders:
+  get:
+    is:
+      - lib.collections
+  post:
+    responses:
+      201: 
+        body:
+          application/json:
+            example:
+              {
+                "message":"order uploaded"
+              }
+  put:
+    responses:
+       201:
+         body:
+           application/json:
+             example:
+               {"message": "update successful" }
+  delete:
+    responses:
+        201: 
+          body:
+            application/json:
+              example:
+                {
+                "message":"order removed"
+              }  
+/users:
+  get:
+    description: users resource get http status responses
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              [
+            {
+            "userid": 900,
+           "email": "abcdkkk@gmail.com",
+            "date_joined": -1573012800000,
+            "modified": 1582747201000,
+            "type": 1,
+            "username": "ABC"
+          },
+            {
+            "userid": 900,
+            "email": "abcdkkk@gmail.com",
+            "date_joined": -1573012800000,
+            "modified": 1582747201000,
+            "type": 1,
+            "username": "ABC"
+          } 
+      ] 
+  post:
+  type: 
+    lib.postResource:
+      exampleReferance1:
+        {
+          "uid":1524
+        }
+  put:
+    responses:
+       201:
+         body:
+           application/json:
+             example:
+               {"message": "update successful" }
+  delete:
+     responses:
+        201: 
+          body:
+            application/json:
+              example:
+                {
+                "message":"user removed"
+              }    
+/categories: 
+  get:
+      description: category resource get http status response      
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+               [       {
+                "categoryid": 1,
+                "productid": 2,
+                "name": "computers",
+                "description": "Lenevo",
+                "video url": "www.lenevo.com",
+                },
+                {
+                  "productid": 1,
+                  "categoryid": 2,
+                  "name": "computers",
+                  "description": "Lenevo",
+                  "video url": "www.lenevo.com",
+                  }
+          ]
+  post:
+    responses:
+      201: 
+        body:
+          application/json:
+            example:
+              {
+                "message":"categories created"
+              }   
+  put:
+    responses:
+       201:
+         body:
+           application/json:
+             example:
+               {"message": "update successful" } 
+  delete: 
+       responses:
+        201: 
+          body:
+            application/json:
+              example:
+                {
+                "message":"categories removed"
+              }

@@ -1,0 +1,162 @@
+#%RAML 1.0
+title: craft online shopping
+uses:
+  lib: library.raml 
+/products: 
+  get:
+    queryParameters:
+      name:
+        type: string
+        description: the name of the product
+        maxLength: 10
+        required: false
+        example: Dell 
+      id:
+        type: integer
+        description: the id of the product
+        required: false
+        example: 1524
+    responses:
+      200: 
+        body:
+          application/json:
+            # type: lib.dataType[] 
+            example: 
+              !include Examples/products.raml
+    is:
+      - lib.collections
+  /{productID}:
+    get:
+      responses:
+        200: 
+         body:
+           application/json:
+             example:
+               !includeExamples/product.raml
+      is:
+        - lib.collections 
+
+      headers:
+        ConnectionType: 
+          description: multiple connection is allowed
+          type: array
+          required: false 
+        session:
+          description: connection session is stored
+          type: string
+          required: false   
+/orders:
+  get:
+    is:
+      - lib.collections 
+  type:
+    lib.postResource:
+      exampleReferance1:
+        {
+          "date":"-2021",
+          "amount":2,
+          "orderid":2,
+          "userid":15,
+          "status":"pending"
+          }
+  /orderid:
+    get:
+      description: this is the http method 
+      responses:
+        200:
+          body:
+            application/json:
+              example: 
+                {
+                  "oid":5
+                }
+
+/users:
+  type: 
+    lib.postResource:
+      exampleReferance1:
+        {
+          "uid":1524
+        }
+  get:
+    description: users resource get http status responses
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              [
+            {
+            "userid": 900,
+           "email": "abcdkkk@gmail.com",
+            "date_joined": -1573012800000,
+            "modified": 1582747201000,
+            "type": 1,
+            "username": "ABC"
+          },
+            {
+            "userid": 900,
+            "email": "abcdkkk@gmail.com",
+            "date_joined": -1573012800000,
+            "modified": 1582747201000,
+            "type": 1,
+            "username": "ABC"
+          } 
+      ] 
+
+  /{userid}:
+    post:
+      description: list of post status codes
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                {
+                  "uid":123
+                }
+        404:
+          body:
+            application/json:
+              example:
+        401:
+          body:
+             application/json:
+                example:
+                  {"message": "unauthorized person"}
+/category: 
+  get:
+      description: category resource get http status response      
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+               [       {
+                "categoryid": 1,
+                "productid": 2,
+                "name": "computers",
+                "description": "Lenevo",
+                "video url": "www.lenevo.com",
+                },
+                {
+                  "productid": 1,
+                  "categoryid": 2,
+                  "name": "computers",
+                  "description": "Lenevo",
+                  "video url": "www.lenevo.com",
+                  }
+          ]
+  /category{id}:
+    get:
+      description: category resource get http status responses
+      responses:
+       200:
+        body:
+          application/json:
+            example:
+              { "categoryid": 1,
+                "productid": 2,
+                "description": "computers",
+                "video url": "www.lenevo.com",
+              }
